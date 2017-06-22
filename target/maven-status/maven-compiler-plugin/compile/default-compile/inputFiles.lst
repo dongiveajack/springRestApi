@@ -1,0 +1,10 @@
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/service/UserService.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/utils/AbhinavQueueListener.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/dao/BaseDaoImpl.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/service/impl/UserServiceImpl.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/model/User.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/utils/MessageListener.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/entity/UserEntity.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/dao/UserRepository.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/utils/AbstractRabbitMsgListener.java
+/Users/11135/Documents/learning/bootcamp/rest/src/main/java/com/myntra/simplerest/utils/RabbitMsgPublisher.java

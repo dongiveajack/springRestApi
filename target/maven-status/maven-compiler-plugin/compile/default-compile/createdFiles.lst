@@ -1,0 +1,10 @@
+com/myntra/simplerest/utils/MessageListener.class
+com/myntra/simplerest/model/User.class
+com/myntra/simplerest/service/impl/UserServiceImpl.class
+com/myntra/simplerest/utils/AbhinavQueueListener.class
+com/myntra/simplerest/utils/AbstractRabbitMsgListener.class
+com/myntra/simplerest/entity/UserEntity.class
+com/myntra/simplerest/dao/BaseDaoImpl.class
+com/myntra/simplerest/dao/UserRepository.class
+com/myntra/simplerest/service/UserService.class
+com/myntra/simplerest/utils/RabbitMsgPublisher.class
