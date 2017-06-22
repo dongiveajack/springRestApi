@@ -7,11 +7,11 @@ import org.apache.log4j.Logger;
 /**
  * Created by Abhinav on 21/06/17.
  */
-public class AbhinavQueueListener extends AbstractRabbitMsgListener<User> {
+public class AbhinavQueueListener {
     private static final Logger LOG = Logger.getLogger(AbhinavQueueListener.class);
 
-    @Override
     public void doProcess(User message) throws Exception {
         LOG.info("Message Read From AbhinavQueue : " + message.toString());
+        System.out.println(message.toString());
     }
 }

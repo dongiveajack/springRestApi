@@ -34,7 +34,7 @@
     <rabbit:listener-container connection-factory="rabbitConnectionFactory"
                                message-converter="jackson2JsonMessageConverter"
                                concurrency="1">
-        <rabbit:listener queues="abhinavQueue" ref="abhinavQueueListener" method="processMessage"/>
+        <rabbit:listener queues="abhinavQueue" ref="abhinavQueueListener" method="doProcess"/>
     </rabbit:listener-container>
 
     <!--<int:channel id="abhinavChannel"/>-->

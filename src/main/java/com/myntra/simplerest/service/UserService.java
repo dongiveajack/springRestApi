@@ -4,7 +4,6 @@ import com.myntra.simplerest.entity.UserEntity;
 import com.myntra.simplerest.model.User;
 import org.springframework.cache.annotation.Cacheable;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
