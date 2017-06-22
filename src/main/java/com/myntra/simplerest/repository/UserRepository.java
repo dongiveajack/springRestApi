@@ -1,4 +1,4 @@
-package com.myntra.simplerest.dao;
+package com.myntra.simplerest.repository;
 
 import com.myntra.simplerest.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;

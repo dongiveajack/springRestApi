@@ -1,6 +1,6 @@
 package com.myntra.simplerest.service.impl;
 
-import com.myntra.simplerest.dao.UserRepository;
+import com.myntra.simplerest.repository.UserRepository;
 import com.myntra.simplerest.entity.UserEntity;
 import com.myntra.simplerest.model.User;
 import com.myntra.simplerest.service.UserService;
