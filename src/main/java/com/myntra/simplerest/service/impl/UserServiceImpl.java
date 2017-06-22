@@ -1,11 +1,14 @@
 package com.myntra.simplerest.service.impl;
 
+import com.myntra.simplerest.manager.UserManager;
 import com.myntra.simplerest.repository.UserRepository;
 import com.myntra.simplerest.entity.UserEntity;
 import com.myntra.simplerest.model.User;
 import com.myntra.simplerest.service.UserService;
 import com.myntra.simplerest.utils.RabbitMsgPublisher;
 import lombok.AllArgsConstructor;
+import org.apache.cxf.jaxrs.impl.ResponseBuilderImpl;
+import org.apache.cxf.jaxrs.impl.ResponseImpl;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
@@ -13,6 +16,7 @@ import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.utils.SerializationUtils;
 import org.springframework.stereotype.Component;
 
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,27 +28,28 @@ public class UserServiceImpl implements UserService {
     private static Integer userId = 0;
     private RabbitMsgPublisher rabbitMsgPublisher;
     private UserRepository userRepository;
+    private UserManager manager;
     private static final String EXCHANGE = "abhinavExchange";
     private static final String ROUTING_KEY = "abhinavQueue";
     private static final Logger LOG = Logger.getLogger(UserServiceImpl.class);
 
     @Override
-    public User create(User user) {
+    public Response create(User user) {
         LOG.info("creating user : " + user.toString());
-        user.setId(userId++);
-        usersList.add(user);
-        Message message = MessageBuilder.withBody(SerializationUtils.serialize(user))
-                .setContentType(MessageProperties.CONTENT_TYPE_TEXT_PLAIN)
-                .setMessageId("123")
-                .setHeader("bar", "baz")
-                .setContentEncoding("string")
-                .build();
-        rabbitMsgPublisher.pushMsgToQueue(EXCHANGE, ROUTING_KEY, user);
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(user.getId());
-        userEntity.setName(user.getName());
-        userRepository.save(userEntity);
-        return user;
+        Response.ResponseBuilder builder = new ResponseBuilderImpl();
+        try {
+            manager.create(user);
+            rabbitMsgPublisher.pushMsgToQueue(EXCHANGE, ROUTING_KEY, user);
+            LOG.info("User created successfully!!");
+        } catch (Exception e) {
+            LOG.error("Error Ocured while creating user", e);
+            builder.status(Response.Status.INTERNAL_SERVER_ERROR);
+            builder.entity(user);
+            return builder.build();
+        }
+        builder.status(Response.Status.CREATED);
+        builder.entity(user);
+        return builder.build();
     }
 
     @Override
@@ -69,7 +74,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserEntity> findAllFromDb() {
+    public List<UserEntity> findAll() {
         LOG.info("Fetching all info from DB : ");
         return userRepository.findByName("abhinav");
     }

@@ -12,6 +12,5 @@ public class AbhinavQueueListener {
 
     public void doProcess(User message) throws Exception {
         LOG.info("Message Read From AbhinavQueue : " + message.toString());
-        System.out.println(message.toString());
     }
 }

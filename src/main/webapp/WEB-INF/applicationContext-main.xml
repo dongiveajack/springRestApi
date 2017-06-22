@@ -38,12 +38,16 @@
     </jaxrs:server>
     <bean id="jacksonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
     <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"/>
+
     <bean id="userService" class="com.myntra.simplerest.service.impl.UserServiceImpl">
         <constructor-arg ref="rabbitMsgPublisher"/>
         <constructor-arg ref="userRepository"/>
+        <constructor-arg ref="userManager"/>
     </bean>
     <bean id="rabbitMsgPublisher" class="com.myntra.simplerest.utils.RabbitMsgPublisher">
         <constructor-arg ref="rabbitTemplate"/>
     </bean>
-
+    <bean id="userManager" class="com.myntra.simplerest.manager.UserManager">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 </beans>
