@@ -88,16 +88,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public Response getAll() {
         Response.ResponseBuilder builder = new ResponseBuilderImpl();
-            List<User> userList = manager.findAll();
-            builder.status(Response.Status.FOUND);
-            builder.entity(userList);
-            LOG.info("All Users Fetched from Db");
+        List<User> userList = manager.findAll();
+        builder.status(Response.Status.FOUND);
+        builder.entity(userList);
+        LOG.info("All Users Fetched from Db");
         return builder.build();
     }
 
     @Override
-    public void delete(Integer id) {
-        usersList.remove((int) id);
+    public Response delete(Long id) {
+        Response.ResponseBuilder builder = new ResponseBuilderImpl();
+        try {
+            manager.delete(id);
+            builder.status(Response.Status.OK);
+            builder.entity("User deleted Successfully");
+        } catch (Exception e) {
+            LOG.error("Error Occurred while deleting User", e);
+            builder.status(Response.Status.INTERNAL_SERVER_ERROR);
+            builder.tag(e.getMessage());
+        }
+        return builder.build();
     }
 
     @Override

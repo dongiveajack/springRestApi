@@ -41,10 +41,14 @@ public class UserManager {
     }
 
     @Transactional(readOnly = true)
-    public List<User> findAll(){
+    public List<User> findAll() {
         List<User> users = new ArrayList<>();
         repository.findAll().forEach(x -> users.add(convertToEntry(x)));
         return users;
+    }
+
+    public void delete(Long id) throws Exception {
+        repository.delete(id);
     }
 
     private User convertToEntry(UserEntity entity) {

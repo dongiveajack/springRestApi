@@ -36,7 +36,8 @@ public interface UserService {
 
     @DELETE
     @Path("/{id}")
-    void delete(@PathParam("id") Integer id);
+    @Produces(MediaType.TEXT_PLAIN)
+    Response delete(@PathParam("id") Long id);
 
     @GET
     @Path("/findAll")
