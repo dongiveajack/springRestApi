@@ -109,12 +109,4 @@ public class UserServiceImpl implements UserService {
         }
         return builder.build();
     }
-
-    @Override
-    public List<UserEntity> findAll() {
-        LOG.info("Fetching all info from DB : ");
-        return userRepository.findByName("abhinav");
-    }
-
-
 }

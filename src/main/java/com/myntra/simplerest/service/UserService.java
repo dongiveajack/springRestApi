@@ -39,7 +39,4 @@ public interface UserService {
     @Produces(MediaType.TEXT_PLAIN)
     Response delete(@PathParam("id") Long id);
 
-    @GET
-    @Path("/findAll")
-    List<UserEntity> findAll();
 }

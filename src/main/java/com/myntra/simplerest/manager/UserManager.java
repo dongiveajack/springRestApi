@@ -47,6 +47,7 @@ public class UserManager {
         return users;
     }
 
+    @Transactional
     public void delete(Long id) throws Exception {
         repository.delete(id);
     }
