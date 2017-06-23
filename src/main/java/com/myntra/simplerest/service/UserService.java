@@ -24,12 +24,11 @@ public interface UserService {
 
     @PUT
     @Path("/{id}")
-    User update(@PathParam("id") Integer id, User User);
+    Response update(@PathParam("id") Long id, User User);
 
     @GET
     @Path("/{id}")
-    @Cacheable(value="userCache")
-    User get(@PathParam("id") Integer id);
+    Response get(@PathParam("id") Long id);
 
     @GET
     @Path("/")
