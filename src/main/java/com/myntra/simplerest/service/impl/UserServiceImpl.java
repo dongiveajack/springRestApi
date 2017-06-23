@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         Response.ResponseBuilder builder = new ResponseBuilderImpl();
         try {
             manager.update(id, user);
-            builder.status(Response.Status.CREATED);
+            builder.status(Response.Status.OK);
             String successMsg = MessageFormat.format("User {0} Updated Successfully ", id);
             LOG.info(successMsg);
         } catch (Exception e) {
@@ -86,8 +86,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return usersList;
+    public Response getAll() {
+        Response.ResponseBuilder builder = new ResponseBuilderImpl();
+            List<User> userList = manager.findAll();
+            builder.status(Response.Status.FOUND);
+            builder.entity(userList);
+            LOG.info("All Users Fetched from Db");
+        return builder.build();
     }
 
     @Override

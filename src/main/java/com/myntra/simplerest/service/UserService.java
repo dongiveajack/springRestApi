@@ -32,7 +32,7 @@ public interface UserService {
 
     @GET
     @Path("/")
-    List<User> getAll();
+    Response getAll();
 
     @DELETE
     @Path("/{id}")
