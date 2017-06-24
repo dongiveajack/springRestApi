@@ -4,6 +4,7 @@ import com.myntra.simplerest.entity.UserEntity;
 import com.myntra.simplerest.model.User;
 import com.myntra.simplerest.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class UserManager {
         return convertToEntry(entity);
     }
 
+    @Cacheable(value = "userCache")
     @Transactional(readOnly = true)
     public User findById(Long id) throws Exception {
         UserEntity entity = repository.findOne(id);
@@ -40,6 +42,7 @@ public class UserManager {
         return convertToEntry(entity);
     }
 
+    @Cacheable(value = "userCache")
     @Transactional(readOnly = true)
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
